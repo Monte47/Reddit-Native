@@ -16,7 +16,7 @@ export default class PostDetail extends Component{
   render() {
     let data = this.props.navigation.state.params.state.data;
     return(
-      <View>
+      <View style={styles.page}>
         <Text>
           Score: {data.score}
         </Text>
@@ -43,3 +43,10 @@ export default class PostDetail extends Component{
     );
   }
 }
+
+const styles = StyleSheet.create({
+  page: {
+    flex: 1,
+    backgroundColor: '#E8F1F2'
+  }
+});

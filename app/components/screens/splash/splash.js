@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {
   View,
   StyleSheet,
-  Text
+  Text,
+  Image
 } from 'react-native';
 
 export default class SplashPage extends Component {
@@ -12,13 +13,13 @@ export default class SplashPage extends Component {
 
   componentWillMount() {
     this.props.getPosts()
-    .then(this.props.navigate('FrontPageContainer'));
+    .then(() => this.props.navigation.navigate('FrontPageContainer'));
   }
 
   render () {
     return(
-      <View>
-        <Text>Loading</Text>
+      <View style={styles.container}>
+        <Text style={styles.title}>Reddit Native</Text>
       </View>
     );
   }
@@ -26,8 +27,13 @@ export default class SplashPage extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#00bfb2',
+    flex:1,
+    backgroundColor: '#98DFAF',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+  },
+  title: {
+    fontFamily: 'Cochin-Bold',
+    fontSize: 30
   }
 });

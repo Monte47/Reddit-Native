@@ -8,12 +8,22 @@ import PostDetail from '../screens/post_detail/post_detail';
 
 export const RedditNav = StackNavigator({
   SplashPage: {
-    screen: SplashContainer
+    screen: SplashContainer,
+    headerMode: 'none',
+    header: null,
+    navigationOptions: {
+      header: null
+    }
   },
   FrontPageContainer: {
-    screen: FrontPageContainer
+    screen: FrontPageContainer,
+    headerMode: 'none',
+    header: null,
+    navigationOptions: {
+      header: null
+    }
   },
   PostDetail: {
-    screen: PostDetail
+    screen: PostDetail,
   }
 });

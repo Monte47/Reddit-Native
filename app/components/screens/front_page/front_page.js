@@ -10,7 +10,6 @@ import {
   FlatList,
   ListView
 } from 'react-native';
-// import { List, ListItem } from 'react-native-elements';
 
 
 export default class FrontPage extends Component {
@@ -18,17 +17,7 @@ export default class FrontPage extends Component {
     super(props);
     this.renderFlatListItem = this.renderFlatListItem.bind(this);
     this.viewPost = this.viewPost.bind(this);
-    // const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    // this.state = {
-    //   dataSource: [],
-    // };
   }
-
-  componentWillMount() {
-    this.props.getPosts();
-    console.log("fetched");
-  }
-
   viewPost(item) {
     this.props.navigation.navigate('PostDetail', {state: item});
   }
@@ -42,7 +31,8 @@ export default class FrontPage extends Component {
               style={{
                 alignSelf: 'center',
                 height: 150,
-                width: 150
+                width: 150,
+                marginRight: 10
               }}
               source={{uri: item.data.thumbnail}}/>
             <View style={styles.right}>
@@ -73,7 +63,7 @@ export default class FrontPage extends Component {
     if(posts) {
       console.log(posts[0].data.title);
       return (
-        <View>
+        <View style={styles.page}>
           <Text style={styles.title}>
             Reddit Native
           </Text>
@@ -87,9 +77,6 @@ export default class FrontPage extends Component {
     } else {
       return (
         <View>
-          <Text>
-            Hello
-          </Text>
         </View>
       );
     }
@@ -97,15 +84,21 @@ export default class FrontPage extends Component {
 }
 
 const styles = StyleSheet.create({
+  page: {
+    backgroundColor: '#E8F1F2'
+  },
   title: {
+    marginTop: 20,
     fontFamily: "Cochin",
     fontSize: 20,
     textAlign: 'center',
     padding: 10
   },
   listItemContainer: {
-    marginTop: 30,
+    marginTop: 15,
     padding: 12,
+    borderBottomWidth: 0.4,
+    borderBottomColor: '#555'
   },
   left: {
     flex: 1,

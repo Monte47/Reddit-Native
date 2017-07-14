@@ -8,11 +8,7 @@ const mapStateToProps = (state, ownProps )=> ({
 });
 
 
-const mapDispatchToProps = (dispatch) => ({
-  getPosts: () => dispatch(requestAllPosts())
-});
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  null
 )(FrontPage);
