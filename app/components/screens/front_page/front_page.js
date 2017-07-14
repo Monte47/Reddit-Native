@@ -8,18 +8,33 @@ import {
   Dimensions,
   View,
   FlatList,
-  ListView
+  ListView,
+  RefreshControl
 } from 'react-native';
 
 
 export default class FrontPage extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      refreshing: false,
+    };
     this.renderFlatListItem = this.renderFlatListItem.bind(this);
     this.viewPost = this.viewPost.bind(this);
+    this._onRefresh = this._onRefresh.bind(this);
   }
+
+
   viewPost(item) {
     this.props.navigation.navigate('PostDetail', {state: item});
+  }
+
+  _onRefresh() {
+    this.setState({refreshing: true});
+    this.props.getPosts().then(() => {
+      console.log("refreshing");
+      this.setState({refreshing: false});
+    });
   }
 
   renderFlatListItem(item, i) {
@@ -61,13 +76,18 @@ export default class FrontPage extends Component {
   render() {
     let posts = this.props.posts.children;
     if(posts) {
-      console.log(posts[0].data.title);
       return (
         <View style={styles.page}>
           <Text style={styles.title}>
             Reddit Native
           </Text>
           <FlatList
+            refreshControl={
+              <RefreshControl
+                refreshing={this.state.refreshing}
+                onRefresh={this._onRefresh}
+                />
+            }
             data={posts}
             renderItem={({item}, i) => this.renderFlatListItem(item)}
             keyExtractor={item => item.data.title}
@@ -85,6 +105,7 @@ export default class FrontPage extends Component {
 
 const styles = StyleSheet.create({
   page: {
+    flex: 1,
     backgroundColor: '#E8F1F2'
   },
   title: {
