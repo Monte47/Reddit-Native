@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import { requestAllPosts } from '../../../actions/front_page_actions';
-import FrontPage from './front_page';
+import SplashPage from './splash';
 
 
-const mapStateToProps = (state, ownProps )=> ({
-  posts: state.posts
+const mapStateToProps = (state)=> ({
+  posts: 'hello'
 });
 
 
@@ -15,4 +15,4 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(FrontPage);
+)(SplashPage);
