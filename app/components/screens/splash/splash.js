@@ -9,11 +9,41 @@ import {
 export default class SplashPage extends Component {
   constructor(props) {
     super(props);
+    this.getData = this.getData.bind(this);
   }
 
   componentWillMount() {
+    // this.getData()
+    // .then(() => {
+    //   debugger;
+    //   this.props.navigation.navigate('FrontPageContainer')
+    // });
+    // .then(() =>this.props.getPosts()
+    // .then((res) => {
+    //   // debugger;
+    //   this.props.setItem('redditData', res.posts.data.data)
+    //   .then(() => this.props.navigation.navigate('FrontPageContainer'));
+    // })
+    // )
+
+
     this.props.getPosts()
-    .then(() => this.props.navigation.navigate('FrontPageContainer'));
+    .then(() => {
+      debugger;
+      this.props.navigation.navigate('FrontPageContainer');
+    })
+  }
+
+  async getData() {
+    let redditData = await this.props.getItem('redditData');
+    if (redditData) {
+      this.props.receivePosts(redditData);
+    } else {
+      this.props.getPosts()
+      .then(res => {
+        this.props.setItem('redditData', res.posts)
+      })
+    }
   }
 
   render () {

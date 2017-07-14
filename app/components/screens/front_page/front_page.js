@@ -47,23 +47,24 @@ export default class FrontPage extends Component {
                 alignSelf: 'center',
                 height: 150,
                 width: 150,
-                marginRight: 10
+                marginRight: 10,
+                borderRadius: 5
               }}
               source={{uri: item.data.thumbnail}}/>
             <View style={styles.right}>
-              <Text>
+              <Text style={styles.postText}>
                 Score: {item.data.score}
               </Text>
-              <Text>
+              <Text style={styles.postText}>
                 {item.data.title}
               </Text>
-              <Text>
+              <Text style={styles.postText}>
                 {item.data.author}
               </Text>
-              <Text>
+              <Text style={styles.postText}>
                 {item.data.subreddit_name_prefixed}
               </Text>
-              <Text>
+              <Text style={styles.postText}>
                 {item.data.num_comments} comments
               </Text>
             </View>
@@ -116,8 +117,7 @@ const styles = StyleSheet.create({
     padding: 10
   },
   listItemContainer: {
-    marginTop: 15,
-    padding: 12,
+    padding: 20,
     borderBottomWidth: 0.4,
     borderBottomColor: '#555'
   },
@@ -132,5 +132,8 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  postText: {
+    fontFamily: 'Avenir'
   }
 });
