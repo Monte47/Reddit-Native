@@ -9,9 +9,11 @@ To run RedditNative, clone this repository and then cd into it. Install the requ
 
 `npm install`
 
-`react-native run-ios`
+for ios: `react-native run-ios`
+
 or
-`react-native run-andriod`
+
+for android: `react-native run-andriod`
 
 ## Features and Functionality.
 
