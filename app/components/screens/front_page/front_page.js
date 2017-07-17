@@ -32,7 +32,6 @@ export default class FrontPage extends Component {
   _onRefresh() {
     this.setState({refreshing: true});
     this.props.getPosts().then((res) => {
-      console.log("refreshing");
       this.props.setItem('redditData', res.posts);
       this.setState({refreshing: false});
     });
@@ -40,12 +39,11 @@ export default class FrontPage extends Component {
 
   renderFlatListItem(item, i) {
     let thumbnail;
-    if (item.data.thumbnail === 'default') {
-      thumbnail = 'https://icons.iconarchive.com/icons/uiconstock/socialmedia/512/Reddit-icon.png';
+    if (item.data.thumbnail === 'default' || item.data.thumbnail === 'self' || item.data.thumbnail === 'nsfw') {
+      thumbnail = 'https://image.freepik.com/free-icon/reddit-social-logo-character_318-64647.jpg';
     } else {
       thumbnail = item.data.thumbnail;
     }
-    console.log(thumbnail);
     return(
       <View style={styles.listItemContainer}>
         <TouchableOpacity onPress={() => this.viewPost(item)}>

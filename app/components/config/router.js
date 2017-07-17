@@ -25,5 +25,6 @@ export const RedditNav = StackNavigator({
   },
   PostDetail: {
     screen: PostDetail,
+    headerMode: 'screen'
   }
 });
