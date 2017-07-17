@@ -31,13 +31,21 @@ export default class FrontPage extends Component {
 
   _onRefresh() {
     this.setState({refreshing: true});
-    this.props.getPosts().then(() => {
+    this.props.getPosts().then((res) => {
       console.log("refreshing");
+      this.props.setItem('redditData', res.posts);
       this.setState({refreshing: false});
     });
   }
 
   renderFlatListItem(item, i) {
+    let thumbnail;
+    if (item.data.thumbnail === 'default') {
+      thumbnail = 'https://icons.iconarchive.com/icons/uiconstock/socialmedia/512/Reddit-icon.png';
+    } else {
+      thumbnail = item.data.thumbnail;
+    }
+    console.log(thumbnail);
     return(
       <View style={styles.listItemContainer}>
         <TouchableOpacity onPress={() => this.viewPost(item)}>
@@ -45,25 +53,40 @@ export default class FrontPage extends Component {
             <Image
               style={{
                 alignSelf: 'center',
-                height: 150,
-                width: 150,
+                height: 120,
+                width: 120,
                 marginRight: 10,
                 borderRadius: 5
               }}
-              source={{uri: item.data.thumbnail}}/>
+              source={{uri: thumbnail}}/>
             <View style={styles.right}>
-              <Text style={styles.postText}>
-                Score: {item.data.score}
-              </Text>
-              <Text style={styles.postText}>
+              <Text style={styles.postTitle}>
                 {item.data.title}
               </Text>
-              <Text style={styles.postText}>
-                {item.data.author}
-              </Text>
-              <Text style={styles.postText}>
-                {item.data.subreddit_name_prefixed}
-              </Text>
+              <View style={styles.split}>
+                <Text style={styles.postText}>
+                  Score:
+                </Text>
+                <Text style={styles.postText}>
+                   {item.data.score}
+                </Text>
+              </View>
+              <View style={styles.split}>
+                <Text style={styles.postText}>
+                  Author:
+                </Text>
+                <Text style={styles.postText}>
+                  {item.data.author}
+                </Text>
+              </View>
+              <View style={styles.split}>
+                <Text style={styles.postText}>
+                  Subreddit:
+                </Text>
+                <Text style={styles.postText}>
+                  {item.data.subreddit_name_prefixed}
+                </Text>
+              </View>
               <Text style={styles.postText}>
                 {item.data.num_comments} comments
               </Text>
@@ -79,7 +102,7 @@ export default class FrontPage extends Component {
     if(posts) {
       return (
         <View style={styles.page}>
-          <Text style={styles.title}>
+          <Text style={styles.pageTitle}>
             Reddit Native
           </Text>
           <FlatList
@@ -91,7 +114,7 @@ export default class FrontPage extends Component {
             }
             data={posts}
             renderItem={({item}, i) => this.renderFlatListItem(item)}
-            keyExtractor={item => item.data.title}
+            keyExtractor={item => item.data.id}
             />
         </View>
       );
@@ -109,7 +132,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#E8F1F2'
   },
-  title: {
+  pageTitle: {
     marginTop: 20,
     fontFamily: "Cochin",
     fontSize: 20,
@@ -134,6 +157,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   postText: {
-    fontFamily: 'Avenir'
+    fontFamily: 'Avenir',
+    marginLeft: 10
+  },
+  split: {
+    flex: 1,
+    marginTop: 5,
+    flexDirection: 'row',
+  },
+  postTitle: {
+    fontFamily: 'Avenir',
+    fontSize: 16,
+    textAlign: 'center',
+    fontWeight: 'bold'
   }
+
 });

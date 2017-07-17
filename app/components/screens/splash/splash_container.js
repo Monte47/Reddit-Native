@@ -9,7 +9,8 @@ const mapDispatchToProps = (dispatch) => ({
   getPosts: () => dispatch(requestAllPosts()),
   receivePosts: posts => dispatch(receivePosts(posts)),
   getItem: ASYNC.getItem,
-  setItem: ASYNC.setItem
+  setItem: ASYNC.setItem,
+  removeItem: ASYNC.removeItem
 });
 
 export default connect(

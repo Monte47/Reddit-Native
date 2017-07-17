@@ -13,25 +13,23 @@ export default class SplashPage extends Component {
   }
 
   componentWillMount() {
-    // this.getData()
-    // .then(() => {
-    //   debugger;
-    //   this.props.navigation.navigate('FrontPageContainer')
-    // });
+    this.getData()
+    .then(() => {
+      this.props.navigation.navigate('FrontPageContainer')
+    })
     // .then(() =>this.props.getPosts()
     // .then((res) => {
-    //   // debugger;
-    //   this.props.setItem('redditData', res.posts.data.data)
+    //   debugger;
+    //   this.props.setItem('redditData', res.posts)
     //   .then(() => this.props.navigation.navigate('FrontPageContainer'));
     // })
     // )
 
 
-    this.props.getPosts()
-    .then(() => {
-      debugger;
-      this.props.navigation.navigate('FrontPageContainer');
-    })
+    // this.props.getPosts()
+    // .then(() => {
+    //   this.props.navigation.navigate('FrontPageContainer');
+    // })
   }
 
   async getData() {
