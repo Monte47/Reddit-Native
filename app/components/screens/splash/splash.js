@@ -17,19 +17,6 @@ export default class SplashPage extends Component {
     .then(() => {
       this.props.navigation.navigate('FrontPageContainer')
     })
-    // .then(() =>this.props.getPosts()
-    // .then((res) => {
-    //   debugger;
-    //   this.props.setItem('redditData', res.posts)
-    //   .then(() => this.props.navigation.navigate('FrontPageContainer'));
-    // })
-    // )
-
-
-    // this.props.getPosts()
-    // .then(() => {
-    //   this.props.navigation.navigate('FrontPageContainer');
-    // })
   }
 
   async getData() {
