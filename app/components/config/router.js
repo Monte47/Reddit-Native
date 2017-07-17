@@ -20,6 +20,8 @@ export const RedditNav = StackNavigator({
     headerMode: 'none',
     header: null,
     navigationOptions: {
+      headerLeft: null,
+      gesturesEnabled: false,
       header: null
     }
   },

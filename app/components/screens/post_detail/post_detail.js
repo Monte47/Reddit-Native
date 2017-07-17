@@ -21,10 +21,7 @@ export default class PostDetail extends Component{
       title: "Reddit Native",
       headerStyle: {
         backgroundColor:"#E8F1F2",
-      },
-      // headerTitleStyle: {
-      //   alignSelf: 'flex-start'
-      // },
+      }
    };
 
    renderImage() {
@@ -38,9 +35,10 @@ export default class PostDetail extends Component{
      return (
        <Image
          style={{
-           alignSelf: 'center',
-           height: 150,
-           width: 150
+          alignSelf: 'center',
+          height: 150,
+          width: 150,
+          borderRadius: 5
          }}
          source={{uri: thumbnail}}/>
      )
